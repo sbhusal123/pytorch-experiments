@@ -1,0 +1,62 @@
+digraph LSTM {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontname="Arial"];
+
+    // Inputs
+    x_t [label="xₜ (input)"];
+    h_prev [label="hₜ₋₁ (prev hidden)"];
+    C_prev [label="Cₜ₋₁ (prev cell state)"];
+
+    // Gates pre-activation
+    f_pre [label="W_f·xₜ + U_f·hₜ₋₁ + b_f"];
+    i_pre [label="W_i·xₜ + U_i·hₜ₋₁ + b_i"];
+    o_pre [label="W_o·xₜ + U_o·hₜ₋₁ + b_o"];
+    c_tilde_pre [label="W_c·xₜ + U_c·hₜ₋₁ + b_c"];
+
+    // Activations
+    f_t [label="fₜ = σ(·)", shape=ellipse];
+    i_t [label="iₜ = σ(·)", shape=ellipse];
+    o_t [label="oₜ = σ(·)", shape=ellipse];
+    c_tilde [label="ĉₜ = tanh(·)", shape=ellipse];
+
+    // Cell state and output
+    mul_f_Cprev [label="fₜ × Cₜ₋₁", shape=ellipse];
+    mul_i_c_tilde [label="iₜ × ĉₜ", shape=ellipse];
+    C_t [label="Cₜ (cell state)"];
+    tanh_C_t [label="tanh(Cₜ)", shape=ellipse];
+    mul_o_t_tanhC [label="oₜ × tanh(Cₜ)", shape=ellipse];
+    h_t [label="hₜ (hidden state/output)"];
+
+    // Edges
+    x_t -> f_pre;
+    h_prev -> f_pre;
+    f_pre -> f_t;
+
+    x_t -> i_pre;
+    h_prev -> i_pre;
+    i_pre -> i_t;
+
+    x_t -> o_pre;
+    h_prev -> o_pre;
+    o_pre -> o_t;
+
+    x_t -> c_tilde_pre;
+    h_prev -> c_tilde_pre;
+    c_tilde_pre -> c_tilde;
+
+    f_t -> mul_f_Cprev;
+    C_prev -> mul_f_Cprev;
+
+    i_t -> mul_i_c_tilde;
+    c_tilde -> mul_i_c_tilde;
+
+    mul_f_Cprev -> C_t;
+    mul_i_c_tilde -> C_t;
+
+    C_t -> tanh_C_t;
+
+    o_t -> mul_o_t_tanhC;
+    tanh_C_t -> mul_o_t_tanhC;
+
+    mul_o_t_tanhC -> h_t;
+}
