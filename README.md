@@ -52,3 +52,14 @@
     - Positional Encodings
     - Forward Pass
     - Training and Interence (Autoregresive Generation)
+
+
+## References:
+
+Some of the references / diagrams are taken from the blogs, books below.
+
+- [Transformers Explained Visually Not Just How But Why](https://medium.com/data-science/transformers-explained-visually-not-just-how-but-why-they-work-so-well-d840bd61a9d3)
+
+- [Hunded days Language Model Book](https://themlbook.com/)
+
+- [Daily Dose Of DS](https://www.dailydoseofds.com/)
