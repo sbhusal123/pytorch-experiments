@@ -44,7 +44,9 @@
 
 ## 5. Mixed Components (Advance Applications)
 
-- [Transformers](./Mixed%20Components/Transformer.ipynb)
+- [Encoder Decoder](./Mixed%20Components/1.%20Encoder%20Decoder.ipynb)
+
+- [Transformers](./Mixed%20Components/2.%20Transformer.ipynb)
     - Encoder Internals
     - Decoder Internals
     - Self Attention, Multi Head Attention
